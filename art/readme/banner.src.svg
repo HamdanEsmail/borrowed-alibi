@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- README banner source. Export to .github/readme/banner.svg with Inkscape, using plain SVG output with text converted to paths (same command as in case_file.py). -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="400" viewBox="0 0 1280 400">
+  <style>
+    @keyframes sweep { 0% { transform: translateX(0); opacity: 0; } 10% { opacity: 0.55; } 90% { opacity: 0.55; } 100% { transform: translateX(1180px); opacity: 0; } }
+    @keyframes eye { 0%, 100% { opacity: 0.55; } 50% { opacity: 1; } }
+    @keyframes water { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
+    .sweep { animation: sweep 9s linear infinite; }
+    .eye { animation: eye 4s ease-in-out infinite; }
+    .water { animation: water 8s ease-in-out infinite; }
+    @media (prefers-reduced-motion: reduce) { .sweep, .eye, .water { animation: none; } .sweep { opacity: 0; } }
+  </style>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0E1820"/>
+      <stop offset="1" stop-color="#16232D"/>
+    </linearGradient>
+    <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E8B47A" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#C08A54" stop-opacity="0.03"/>
+    </linearGradient>
+    <radialGradient id="pool" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#E8B47A" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#C08A54" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cyan" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#70CFCF" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#70CFCF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glass" cx="0.4" cy="0.35" r="0.7">
+      <stop offset="0" stop-color="#1C3446"/>
+      <stop offset="1" stop-color="#0B1620"/>
+    </radialGradient>
+    <radialGradient id="vig" cx="0.5" cy="0.5" r="0.75">
+      <stop offset="0.55" stop-color="#0A1218" stop-opacity="0"/>
+      <stop offset="1" stop-color="#0A1218" stop-opacity="0.9"/>
+    </radialGradient>
+    <linearGradient id="sweepGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#70CFCF" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#70CFCF" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#70CFCF" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="porthole"><circle cx="830" cy="165" r="58"/></clipPath>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="3"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="400" fill="url(#bg)"/>
+
+  <!-- bulkhead ribs and rivet seam -->
+  <g fill="#1B2A35" stroke="#0B141B" stroke-width="1">
+    <rect x="640" y="0" width="16" height="330"/>
+    <rect x="940" y="0" width="16" height="330"/>
+    <rect x="1180" y="0" width="16" height="330"/>
+  </g>
+  <g fill="#3A5160">
+    <circle cx="676" cy="250" r="1.4"/><circle cx="696" cy="250" r="1.4"/><circle cx="716" cy="250" r="1.4"/>
+    <circle cx="736" cy="250" r="1.4"/><circle cx="756" cy="250" r="1.4"/><circle cx="776" cy="250" r="1.4"/>
+    <circle cx="976" cy="250" r="1.4"/><circle cx="996" cy="250" r="1.4"/><circle cx="1136" cy="250" r="1.4"/>
+    <circle cx="1156" cy="250" r="1.4"/><circle cx="1216" cy="250" r="1.4"/><circle cx="1236" cy="250" r="1.4"/>
+  </g>
+  <!-- floor -->
+  <rect x="0" y="330" width="1280" height="70" fill="#121D25"/>
+  <rect x="0" y="330" width="1280" height="4" fill="#3E7F7A" opacity="0.8"/>
+
+  <!-- porthole -->
+  <circle cx="830" cy="165" r="80" fill="#0B141B"/>
+  <circle cx="830" cy="165" r="76" fill="#8C7A4E"/>
+  <circle cx="830" cy="165" r="64" fill="#5E5236"/>
+  <circle cx="830" cy="165" r="58" fill="url(#glass)"/>
+  <g clip-path="url(#porthole)">
+    <g class="water">
+      <rect x="772" y="178" width="120" height="2" fill="#2E5F66"/>
+      <rect x="780" y="192" width="104" height="2" fill="#2E5F66"/>
+      <rect x="790" y="206" width="84" height="2" fill="#2E5F66"/>
+      <ellipse cx="808" cy="156" rx="5" ry="3" fill="#E8B47A"/>
+      <ellipse cx="852" cy="150" rx="3.5" ry="2.4" fill="#C08A54"/>
+      <rect x="805" y="166" width="5" height="22" fill="#C08A54" opacity="0.5"/>
+      <rect x="850" y="160" width="4" height="26" fill="#C08A54" opacity="0.45"/>
+    </g>
+  </g>
+  <g fill="#C2B48A">
+    <circle cx="830" cy="95" r="2.4"/><circle cx="830" cy="235" r="2.4"/><circle cx="760" cy="165" r="2.4"/><circle cx="900" cy="165" r="2.4"/>
+    <circle cx="780.5" cy="115.5" r="2.4"/><circle cx="879.5" cy="115.5" r="2.4"/><circle cx="780.5" cy="214.5" r="2.4"/><circle cx="879.5" cy="214.5" r="2.4"/>
+  </g>
+  <ellipse cx="830" cy="165" rx="110" ry="110" fill="url(#cyan)" opacity="0.4"/>
+
+  <!-- work lamp and cone over Echo -->
+  <line x1="1062" y1="0" x2="1062" y2="34" stroke="#141C22" stroke-width="2"/>
+  <polygon points="1046,34 1078,34 1086,56 1038,56" fill="#4A4436" stroke="#0B141B" stroke-width="2"/>
+  <ellipse cx="1062" cy="56" rx="24" ry="4.5" fill="#E8B47A"/>
+  <polygon points="1040,58 1084,58 1190,345 930,345" fill="url(#cone)"/>
+  <ellipse cx="1062" cy="348" rx="170" ry="22" fill="url(#pool)"/>
+
+  <!-- Echo (same design as the clinic style test), facing left -->
+  <g transform="translate(1062,345) scale(1.36) translate(-878,-442)">
+    <ellipse cx="878" cy="442" rx="26" ry="6" fill="#0A1218" opacity="0.6"/>
+    <path d="M 866,402 L 868,438 L 876,438 L 876,402 Z" fill="#7F909A" stroke="#0B141B" stroke-width="1.5"/>
+    <path d="M 880,402 L 880,438 L 889,438 L 889,402 Z" fill="#9FB0B8" stroke="#0B141B" stroke-width="1.5"/>
+    <path d="M 865,436 L 877,436 L 877,442 L 861,442 Z" fill="#4A6372" stroke="#0B141B" stroke-width="1.2"/>
+    <path d="M 879,436 L 891,436 L 891,442 L 875,442 Z" fill="#4A6372" stroke="#0B141B" stroke-width="1.2"/>
+    <path d="M 858,292 Q 878,284 898,292 L 902,350 L 906,410 Q 880,416 852,410 L 856,350 Z" fill="#1E2B33" stroke="#0B141B" stroke-width="2"/>
+    <path d="M 878,296 L 878,410" stroke="#101B24" stroke-width="1.5"/>
+    <path d="M 860,294 Q 878,287 896,294" fill="none" stroke="#E8B47A" stroke-width="1.4" opacity="0.7"/>
+    <path d="M 858,296 L 852,352 L 856,370 L 863,368 L 864,352 Z" fill="#1B272E" stroke="#0B141B" stroke-width="1.5"/>
+    <rect x="852" y="364" width="11" height="3" fill="#70CFCF"/>
+    <path d="M 853,367 L 856,384 L 862,384 L 863,367 Z" fill="#9FB0B8" stroke="#0B141B" stroke-width="1.2"/>
+    <path d="M 898,296 L 902,352 L 900,370 L 893,368 L 892,352 Z" fill="#1B272E" stroke="#0B141B" stroke-width="1.5"/>
+    <path d="M 893,367 L 893,384 L 899,384 L 901,367 Z" fill="#9FB0B8" stroke="#0B141B" stroke-width="1.2"/>
+    <rect x="886" y="294" width="9" height="5" fill="#4A6372" stroke="#0B141B" stroke-width="0.6"/>
+    <rect x="873" y="276" width="10" height="12" fill="#7F909A" stroke="#0B141B" stroke-width="1.2"/>
+    <path d="M 866,256 Q 866,246 878,246 Q 891,246 891,258 L 890,272 Q 884,282 874,281 Q 866,278 865,268 Z" fill="#9FB0B8" stroke="#0B141B" stroke-width="1.8"/>
+    <path d="M 869,249 Q 878,245 887,249" fill="none" stroke="#E8B47A" stroke-width="1.2" opacity="0.8"/>
+    <path d="M 869,271 L 884,277" fill="none" stroke="#4A6372" stroke-width="0.8"/>
+    <path d="M 886,250 Q 890,256 889,266" fill="none" stroke="#4A6372" stroke-width="1.6" opacity="0.7"/>
+    <rect x="866" y="259" width="10" height="2.6" rx="1.3" fill="#101B24"/>
+    <rect class="eye" x="866" y="259" width="10" height="2.6" rx="1.3" fill="none" stroke="#70CFCF" stroke-width="0.9"/>
+  </g>
+
+  <!-- title block -->
+  <text x="72" y="92" font-family="Bahnschrift" font-weight="700" font-size="16" letter-spacing="5" fill="#C08A54">CASE FILE 00 · THE MERIDIAN</text>
+  <text x="68" y="186" font-family="Bahnschrift" font-weight="700" font-size="96" letter-spacing="4" fill="#0B141B" transform="translate(3,3)">BORROWED</text>
+  <text x="68" y="186" font-family="Bahnschrift" font-weight="700" font-size="96" letter-spacing="4" fill="#E6DCC3">BORROWED</text>
+  <text x="68" y="276" font-family="Bahnschrift" font-weight="700" font-size="96" letter-spacing="4" fill="#0B141B" transform="translate(3,3)">ALIBI</text>
+  <text x="68" y="276" font-family="Bahnschrift" font-weight="700" font-size="96" letter-spacing="4" fill="#E6DCC3">ALIBI</text>
+  <rect x="72" y="296" width="430" height="2" fill="#70CFCF" opacity="0.8"/>
+  <text x="72" y="322" font-family="Bahnschrift" font-size="17" letter-spacing="3.2" fill="#70CFCF">AN ANDROID INVESTIGATION THRILLER</text>
+
+  <!-- record sweep across the title -->
+  <g class="sweep">
+    <rect x="40" y="110" width="60" height="230" fill="url(#sweepGrad)" opacity="0.18"/>
+    <rect x="68" y="110" width="2" height="230" fill="#70CFCF" opacity="0.6"/>
+  </g>
+
+  <!-- institutional vinyl strip -->
+  <rect x="72" y="352" width="300" height="22" fill="#D3D9DC"/>
+  <text x="82" y="368" font-family="Bahnschrift" font-weight="700" font-size="11.5" letter-spacing="2" fill="#1B2832">BUILT WEEKLY FOR HACK CLUB TERRA</text>
+
+  <rect width="1280" height="400" fill="url(#vig)"/>
+  <rect width="1280" height="400" filter="url(#grain)" opacity="0.05"/>
+</svg>
