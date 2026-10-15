@@ -1,6 +1,8 @@
 import Phaser from 'phaser';
 import { CLINIC } from '../data/clinicLayout.js';
 import { INSPECT } from '../data/ep00Text.js';
+import { IVO } from '../data/ep00Ivo.js';
+import { Conversation } from '../dialogue/Conversation.js';
 import { state } from '../state/gameState.js';
 import { InspectPanel } from '../ui/InspectPanel.js';
 
@@ -20,6 +22,7 @@ export class ClinicScene extends Phaser.Scene {
         this.createEcho();
         this.createControls();
         this.panel = new InspectPanel();
+        this.ivoTalk = new Conversation('Ivo', IVO, this.panel);
     }
 
     drawRoom() {
@@ -85,11 +88,25 @@ export class ClinicScene extends Phaser.Scene {
         this.cursors = this.input.keyboard.createCursorKeys();
         this.wasd = this.input.keyboard.addKeys('W, A, S, D');
         this.actionKeys = this.input.keyboard.addKeys('E, ENTER, ESC');
+        const numbers = this.input.keyboard.addKeys('ONE, TWO, THREE, FOUR');
+        this.choiceKeys = [numbers.ONE, numbers.TWO, numbers.THREE, numbers.FOUR];
     }
     update() {
         // JustDown is true only on the frame a key goes down, so read each key once
         const pressedAction = Phaser.Input.Keyboard.JustDown(this.actionKeys.E) || Phaser.Input.Keyboard.JustDown(this.actionKeys.ENTER);
         const pressedEscape = Phaser.Input.Keyboard.JustDown(this.actionKeys.ESC);
+        const pressedChoice = this.choiceKeys.map((key) => Phaser.Input.Keyboard.JustDown(key)).indexOf(true);
+
+        if (this.ivoTalk.isActive) {
+            this.echo.body.setVelocity(0, 0);
+
+            if (pressedChoice !== -1) {
+                this.ivoTalk.choose(pressedChoice);
+            } else if (pressedEscape) {
+                this.ivoTalk.leave();
+            }
+            return;
+        }
 
         if (this.panel.isOpen) {
             this.echo.body.setVelocity(0, 0);
@@ -146,10 +163,20 @@ export class ClinicScene extends Phaser.Scene {
         this.focusLabel.setText(text).setPosition(item.labelAt.x, item.labelAt.y).setVisible(true);
     }
     interact(item) {
+        if (item.talk) {
+            this.ivoTalk.start(state.flags['ep00.ivo.met'] ? 'n01' : 'n00');
+            return;
+        }
+
         const text = INSPECT[item.id];
         const firstTime = !state.seen[item.id];
+        const lines = [...(firstTime ? text.first : text.repeat)];
+
+        if (text.after && state.flags[text.after.flag]) {
+            lines.push ({ who: 'ECHO', text: text.after.text });
+        }
 
         state.seen[item.id] = true;
-        this.panel.open(item.label, firstTime ? text.first : text.repeat);
+        this.panel.open(item.label, lines);
     }
 }
