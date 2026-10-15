@@ -18,7 +18,10 @@ export const CLINIC = {
         },
         {
             name: 'bucket', x: 306, y: 472, width: 28, height: 28
-        }
+        },
+        {
+            name: 'ivo', x: 422, y: 418, width: 36, height: 12
+        },
     ],
     interactables: [ 
     {
@@ -43,6 +46,10 @@ export const CLINIC = {
     {
         id: 'obj.board', label: 'Hours board', x: 433, y: 386, labelAt: { x: 433, y: 154 },
         marker: { x: 400, y: 160, width: 66, height: 56, color: 0xb9beb8 },
+    },
+    {
+        id: 'chr.ivo', label: 'Ivo', talk: true, x: 440, y: 430, labelAt: { x: 440, y: 262 },
+        marker: { x: 420, y: 270, width: 40, height: 160, color: 0x8a7560, depth: 430 },
     },
 
     ],

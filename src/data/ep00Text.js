@@ -4,6 +4,7 @@
 // Each entry has a title, the text shown the first time (`first`), and a
 // shorter line for later inspections (`repeat`). `who` labels whose words
 // a line is: ECHO is Echo's own observation; other labels are printed text.
+// `after` adds one more line once Echo has heard the matching testimony.
 
 export const INSPECT = {
   'obj.terminal': {
@@ -27,6 +28,7 @@ export const INSPECT = {
     repeat: [
       { who: 'ECHO', text: 'Pulled by hand. Nothing about what happened afterward is in the cable.' },
     ],
+    after: { flag: 'tst.ivo_pulled', text: 'Scuffed where he said he gripped it.' },
   },
 
   'obj.tag': {
@@ -39,6 +41,7 @@ export const INSPECT = {
     repeat: [
       { who: 'ECHO', text: 'Freight tag. Lift clock. 21:06. Bound for the gangway. Found beside this chair.' },
     ],
+    after: { flag: 'tst.ivo_walked_out', text: 'He said he took it off and dropped it. It fell here.' },
   },
 
   'obj.chair': {
