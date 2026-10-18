@@ -29,6 +29,7 @@ export class InspectPanel {
         }
         this.showChoices(choices);
         this.root.hidden = false;
+        this.root.scrollTop =0;
         this.isOpen = true;
     }
     showChoices(choices) {

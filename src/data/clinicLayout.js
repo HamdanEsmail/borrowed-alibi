@@ -25,7 +25,7 @@ export const CLINIC = {
     ],
     interactables: [ 
     {
-        id: 'obj.terminal', label: 'Clinic terminal', x: 650, y: 386, labelAt: { x: 650, y: 146},
+        id: 'obj.terminal', label: 'Clinic terminal', frame: true, x: 650, y: 386, labelAt: { x: 650, y: 146},
         marker: { x: 600, y: 152, width: 100, height: 189, color: 0x3a4650 },
     },
     {
@@ -37,7 +37,7 @@ export const CLINIC = {
         marker: { x: 504, y: 437, width: 28, height: 14, color: 0xe6dcc3, depth: 451 },
     },
     {
-        id: 'obj.chair', label: 'Examination chair', x: 548, y: 420, labelAt: { x: 548, y: 388 },
+        id: 'obj.chair', label: 'Examination chair', frame: true, x: 548, y: 420, labelAt: { x: 548, y: 388 },
     },
     {
         id: 'obj.wallunit', label: 'Wall unit', x: 218, y: 386, labelAt: { x: 218, y: 166 },

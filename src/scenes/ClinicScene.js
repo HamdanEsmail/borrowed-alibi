@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { CLINIC } from '../data/clinicLayout.js';
 import { INSPECT } from '../data/ep00Text.js';
 import { IVO } from '../data/ep00Ivo.js';
+import { FRAME } from '../data/ep00Frame.js';
 import { Conversation } from '../dialogue/Conversation.js';
 import { state } from '../state/gameState.js';
 import { InspectPanel } from '../ui/InspectPanel.js';
@@ -23,6 +24,9 @@ export class ClinicScene extends Phaser.Scene {
         this.createControls();
         this.panel = new InspectPanel();
         this.ivoTalk = new Conversation('Ivo', IVO, this.panel);
+        this.frameTalk = new Conversation('Ivo\'s frame', FRAME, this.panel);
+        this.talks = [this.ivoTalk, this.frameTalk];
+        this.actions = [];
     }
 
     drawRoom() {
@@ -88,30 +92,31 @@ export class ClinicScene extends Phaser.Scene {
         this.cursors = this.input.keyboard.createCursorKeys();
         this.wasd = this.input.keyboard.addKeys('W, A, S, D');
         this.actionKeys = this.input.keyboard.addKeys('E, ENTER, ESC');
-        const numbers = this.input.keyboard.addKeys('ONE, TWO, THREE, FOUR');
-        this.choiceKeys = [numbers.ONE, numbers.TWO, numbers.THREE, numbers.FOUR];
+        const numbers = this.input.keyboard.addKeys('ONE, TWO, THREE, FOUR, FIVE');
+        this.choiceKeys = [numbers.ONE, numbers.TWO, numbers.THREE, numbers.FOUR, numbers.FIVE];
     }
     update() {
         // JustDown is true only on the frame a key goes down, so read each key once
         const pressedAction = Phaser.Input.Keyboard.JustDown(this.actionKeys.E) || Phaser.Input.Keyboard.JustDown(this.actionKeys.ENTER);
         const pressedEscape = Phaser.Input.Keyboard.JustDown(this.actionKeys.ESC);
         const pressedChoice = this.choiceKeys.map((key) => Phaser.Input.Keyboard.JustDown(key)).indexOf(true);
+        const talk = this.talks.find((t) => t.isActive);
 
-        if (this.ivoTalk.isActive) {
+        if (talk) {
             this.echo.body.setVelocity(0, 0);
-
             if (pressedChoice !== -1) {
-                this.ivoTalk.choose(pressedChoice);
+                talk.choose(pressedChoice);
             } else if (pressedEscape) {
-                this.ivoTalk.leave();
+                talk.leave();
             }
             return;
         }
-
         if (this.panel.isOpen) {
             this.echo.body.setVelocity(0, 0);
 
-            if (pressedAction || pressedEscape) {
+            if (pressedChoice !== -1) {
+                this.runAction(pressedChoice);
+            } else if (pressedAction || pressedEscape) {
                 this.panel.close();
             }
             return;
@@ -177,6 +182,21 @@ export class ClinicScene extends Phaser.Scene {
         }
 
         state.seen[item.id] = true;
-        this.panel.open(item.label, lines);
+        this.actions = this.actionsFor(item);
+        this.panel.onChoose = (index) => this.runAction(index);
+        this.panel.open(item.label, lines, this.actions);
+    }
+    actionsFor(item) {
+        const actions = [];
+        if (item.frame && state.flags['ep00.clipHeld']) {
+            actions.push({ label: 'Borrow Ivo\'s perspective', talk: this.frameTalk, node: 'frame'});
+        }
+        return actions;
+    }
+    runAction(index) {
+        const action = this.actions[index];
+        if (action) {
+            action.talk.start(action.node);
+        }
     }
 }
