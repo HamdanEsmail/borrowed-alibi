@@ -25,7 +25,7 @@ export const CLINIC = {
     ],
     interactables: [ 
     {
-        id: 'obj.terminal', label: 'Clinic terminal', frame: true, x: 650, y: 386, labelAt: { x: 650, y: 146},
+        id: 'obj.terminal', label: 'Clinic terminal', frame: true, report: true, x: 650, y: 386, labelAt: { x: 650, y: 146},
         marker: { x: 600, y: 152, width: 100, height: 189, color: 0x3a4650 },
     },
     {

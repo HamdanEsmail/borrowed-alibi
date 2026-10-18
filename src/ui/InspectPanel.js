@@ -39,6 +39,12 @@ export class InspectPanel {
             const button = document.createElement('button');
             button.type = 'button';
             button.textContent = `${index + 1}. ${choice.label}`;
+            if (choice.detail) {
+                const detail = document.createElement('span');
+                detail.className = 'choice-detail';
+                detail.textContent = choice.detail;
+                button.append(detail);
+            }
             button.addEventListener('click', () => this.onChoose(index));
             this.choiceList.append(button);
         });

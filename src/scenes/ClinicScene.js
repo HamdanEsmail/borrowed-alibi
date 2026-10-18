@@ -3,6 +3,7 @@ import { CLINIC } from '../data/clinicLayout.js';
 import { INSPECT } from '../data/ep00Text.js';
 import { IVO } from '../data/ep00Ivo.js';
 import { FRAME } from '../data/ep00Frame.js';
+import { REPORT } from '../data/ep00Report.js';
 import { Conversation } from '../dialogue/Conversation.js';
 import { state } from '../state/gameState.js';
 import { InspectPanel } from '../ui/InspectPanel.js';
@@ -25,7 +26,8 @@ export class ClinicScene extends Phaser.Scene {
         this.panel = new InspectPanel();
         this.ivoTalk = new Conversation('Ivo', IVO, this.panel);
         this.frameTalk = new Conversation('Ivo\'s frame', FRAME, this.panel);
-        this.talks = [this.ivoTalk, this.frameTalk];
+        this.reportTalk = new Conversation('Provisional Report', REPORT, this.panel);
+        this.talks = [this.ivoTalk, this.frameTalk, this.reportTalk];
         this.actions = [];
     }
 
@@ -100,6 +102,10 @@ export class ClinicScene extends Phaser.Scene {
         const pressedAction = Phaser.Input.Keyboard.JustDown(this.actionKeys.E) || Phaser.Input.Keyboard.JustDown(this.actionKeys.ENTER);
         const pressedEscape = Phaser.Input.Keyboard.JustDown(this.actionKeys.ESC);
         const pressedChoice = this.choiceKeys.map((key) => Phaser.Input.Keyboard.JustDown(key)).indexOf(true);
+        if (state.flags['ep00.complete'] && !this.panel.isOpen) {
+            window.location.reload();
+            return;
+        }
         const talk = this.talks.find((t) => t.isActive);
 
         if (talk) {
@@ -190,6 +196,9 @@ export class ClinicScene extends Phaser.Scene {
         const actions = [];
         if (item.frame && state.flags['ep00.clipHeld']) {
             actions.push({ label: 'Borrow Ivo\'s perspective', talk: this.frameTalk, node: 'frame'});
+        }
+        if (item.report && !state.flags['inf.ep00_report']) {
+            actions.push({ label: 'File provisional report', talk: this.reportTalk, node: 'start'});
         }
         return actions;
     }

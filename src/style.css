@@ -78,3 +78,10 @@ body {
 .inspect-choices button:hover {
     border-color: #c08a54;
 }
+
+.choice-detail {
+    display: block;
+    margin-top: 2px;
+    font-size: 13px;
+    color: #9fb0b8;
+}
