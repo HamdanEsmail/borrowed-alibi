@@ -5,8 +5,8 @@ import { ClinicScene } from './scenes/ClinicScene.js';
 const config = {
     type: Phaser.AUTO,
     parent: 'game',
-    width: 960,
-    height: 540,
+    width: 1920,
+    height: 1080,
     backgroundColor: '#101b24',
     scale: {
         mode: Phaser.Scale.FIT,

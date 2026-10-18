@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { CLINIC } from '../data/clinicLayout.js';
+import { CLINIC_ART, ECHO_ART } from '../data/clinicArt.js';
 import { INSPECT } from '../data/ep00Text.js';
 import { IVO } from '../data/ep00Ivo.js';
 import { FRAME } from '../data/ep00Frame.js';
@@ -17,8 +18,15 @@ export class ClinicScene extends Phaser.Scene {
     constructor() {
         super('ClinicScene');
     }
+    preload() {
+        for (const art of CLINIC_ART) {
+            this.load.image(art.key, art.file);
+        }
+        this.load.image(ECHO_ART.key, ECHO_ART.file);
+    }
 
     create() {
+        this.cameras.main.setZoom(2).centerOn(480, 270);
         this.drawRoom();
         this.createObstacles();
         this.createInteractables();
@@ -33,14 +41,14 @@ export class ClinicScene extends Phaser.Scene {
         this.actions = [];
         this.introTalk.start('start');
     }
-
+    
     drawRoom() {
-        // Back wall and floor
-        this.add.rectangle(0, 0, 960, 372, 0x1b2a36).setOrigin(0);
-        this.add.rectangle(0, 372, 960, 168, 0x24323d).setOrigin(0);
+        for (const art of CLINIC_ART) {
+            const picture = this.add.image(art.x, art.y, art.key).setOrigin(0).setScale(0.5).setDepth(art.depth);
 
-        for (const door of CLINIC.doors) {
-            this.add.rectangle(door.x, door.y, door.width, door.height, 0x34495a).setOrigin(0);
+            if (art.breathes) {
+                this.tweens.add({ targets: picture, alpha: 0.7, duration: 2400, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
+            }
         }
     }
 
@@ -48,7 +56,7 @@ export class ClinicScene extends Phaser.Scene {
         this.obstacles = this.physics.add.staticGroup();
 
         for (const item of CLINIC.obstacles) {
-            const block = this.add.rectangle(item.x, item.y, item.width, item.height, 0x6b5843).setOrigin(0);
+            const block = this.add.rectangle(item.x, item.y, item.width, item.height, 0x6b5843).setOrigin(0).setVisible(false);
 
             // Things Lower on screen are closer to the camera, so they draw on top
             block.setDepth(item.y + item.height);
@@ -57,13 +65,6 @@ export class ClinicScene extends Phaser.Scene {
     }
 
     createInteractables() {
-        for (const item of CLINIC.interactables) {
-            if (item.marker) {
-                const m = item.marker;
-                this.add.rectangle(m.x, m.y, m.width, m.height, m.color).setOrigin(0).setDepth(m.depth ?? 0);
-            }
-        }
-
         // One label, moved to whichever object Echo is closest to
         this.focusLabel = this.add.text(0, 0, '', {
             fontFamily: 'system-ui, sans-serif',
@@ -71,6 +72,7 @@ export class ClinicScene extends Phaser.Scene {
             color: '#e6dcc3',
             backgroundColor: '#101b24',
             padding: { x: 8, y: 4 },
+            resolution: 2,
         })
         .setOrigin(0.5, 1)
         .setDepth(1000)
@@ -81,8 +83,9 @@ export class ClinicScene extends Phaser.Scene {
         const { x, y } = CLINIC.spawn;
         const band = CLINIC.walkBand;
 
-        this.echo = this.add.rectangle(x, y, 44, 170, 0x9fc3d6).setOrigin(0.5, 1);
+        this.echo = this.add.rectangle(x, y, 44, 170, 0x9fc3d6).setOrigin(0.5, 1).setVisible(false);
         this.physics.add.existing(this.echo);
+        this.echoArt = this.add.image(x, y, ECHO_ART.key).setOrigin(0.5, ECHO_ART.feet / ECHO_ART.height).setScale(0.5);
 
         // Only Echo's feet Collide, Not the whole body.
         this.echo.body.setSize(36, 14, false);
@@ -153,6 +156,11 @@ export class ClinicScene extends Phaser.Scene {
         
         this.echo.body.setVelocity(direction.x * ECHO_SPEED, direction.y * ECHO_SPEED);
         this.echo.setDepth(this.echo.y);
+        this.echoArt.setPosition(this.echo.x, this.echo.y).setDepth(this.echo.y);
+
+        if (direction.x !==0) {
+            this.echoArt.setFlipX(direction.x > 0);
+        }
     }
 
     findNearest() {

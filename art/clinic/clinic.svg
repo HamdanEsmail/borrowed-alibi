@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Borrowed Alibi: the clinic (Episode 00). Built from the approved style test of 15 Oct 2026.
+     Logical 960x540 (the game's coordinates), exported at 2x by export.py.
+     Layers are top-level groups, back to front. Each moving or overlapping thing has its own id. -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+     width="1920" height="1080" viewBox="0 0 960 540">
+  <defs>
+    <radialGradient id="amberPool" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#E8B47A" stop-opacity="0.55"/>
+      <stop offset="0.45" stop-color="#C08A54" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#C08A54" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="amberWash" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#C08A54" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#C08A54" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="amberCone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E8B47A" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#C08A54" stop-opacity="0.02"/>
+    </linearGradient>
+    <radialGradient id="cyanGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#70CFCF" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#70CFCF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="vignette" cx="0.54" cy="0.6" r="0.75">
+      <stop offset="0.5" stop-color="#0A1218" stop-opacity="0"/>
+      <stop offset="1" stop-color="#0A1218" stop-opacity="0.85"/>
+    </radialGradient>
+    <linearGradient id="leftDark" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0A1218" stop-opacity="0.45"/>
+      <stop offset="0.45" stop-color="#0A1218" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="glass" cx="0.4" cy="0.35" r="0.7">
+      <stop offset="0" stop-color="#1C3446"/>
+      <stop offset="1" stop-color="#0B1620"/>
+    </radialGradient>
+    <linearGradient id="backWall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#15222C"/>
+      <stop offset="1" stop-color="#1F303C"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16222B"/>
+      <stop offset="1" stop-color="#1D2B35"/>
+    </linearGradient>
+    <pattern id="rivets" width="12" height="4" patternUnits="userSpaceOnUse">
+      <circle cx="6" cy="2" r="0.9" fill="#3A5160"/>
+    </pattern>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+  </defs>
+
+  <!-- ============ FAR: architecture ============ -->
+  <g id="far" inkscape:groupmode="layer" inkscape:label="far">
+    <!-- ceiling -->
+    <polygon points="0,0 960,0 960,60 820,87 140,87 0,60" fill="#0E1820"/>
+    <!-- back wall -->
+    <rect x="140" y="87" width="680" height="254" fill="url(#backWall)"/>
+    <!-- panel value variation between ribs -->
+    <g fill="#0B141B">
+      <rect x="140" y="87" width="108" height="239" opacity="0.18"/>
+      <rect x="371" y="87" width="103" height="239" opacity="0.08"/>
+      <rect x="770" y="87" width="50" height="239" opacity="0.22"/>
+    </g>
+    <g stroke="#182630" stroke-width="1">
+      <line x1="194" y1="104" x2="194" y2="326"/><line x1="310" y1="104" x2="310" y2="326"/>
+      <line x1="422" y1="104" x2="422" y2="326"/><line x1="530" y1="104" x2="530" y2="326"/>
+      <line x1="730" y1="104" x2="730" y2="326"/>
+    </g>
+    <!-- side walls -->
+    <polygon points="0,60 140,87 140,341 0,419" fill="#131E27"/>
+    <polygon points="960,60 820,87 820,341 960,419" fill="#16232D"/>
+    <!-- floor -->
+    <polygon points="140,341 820,341 960,419 960,540 0,540 0,419" fill="url(#floor)"/>
+
+    <!-- floor plate seams (converge to vanishing point 480,152) -->
+    <g stroke="#111B22" stroke-width="1" fill="none">
+      <line x1="120" y1="352" x2="840" y2="352"/>
+      <line x1="90" y1="368" x2="870" y2="368"/>
+      <line x1="45" y1="392" x2="915" y2="392"/>
+      <line x1="0" y1="428" x2="960" y2="428"/>
+      <line x1="0" y1="478" x2="960" y2="478"/>
+      <line x1="253" y1="341" x2="14" y2="540"/>
+      <line x1="366" y1="341" x2="246" y2="540"/>
+      <line x1="480" y1="341" x2="480" y2="540"/>
+      <line x1="594" y1="341" x2="714" y2="540"/>
+      <line x1="707" y1="341" x2="946" y2="540"/>
+    </g>
+    <!-- worn path from entry door to chair -->
+    <path d="M 905,430 C 820,420 700,425 610,420 L 600,400 C 690,398 800,392 880,385 Z"
+          fill="#2C3D48" opacity="0.45"/>
+
+    <!-- rivet seams on back wall -->
+    <rect x="140" y="148" width="680" height="4" fill="url(#rivets)"/>
+    <rect x="140" y="268" width="680" height="4" fill="url(#rivets)"/>
+    <line x1="140" y1="150" x2="820" y2="150" stroke="#27394600" stroke-width="0"/>
+
+    <!-- bulkhead ribs (every ~1.2 m), curving into the ceiling -->
+    <g id="ribs">
+      <g>
+        <path d="M 248,341 L 248,104 Q 248,90 238,87 L 266,87 Q 258,92 258,104 L 258,341 Z" fill="#243744" stroke="#0B141B" stroke-width="0.8"/>
+        <line x1="249.5" y1="104" x2="249.5" y2="341" stroke="#4A6372" stroke-width="1"/>
+      </g>
+      <g>
+        <path d="M 361,341 L 361,104 Q 361,90 351,87 L 379,87 Q 371,92 371,104 L 371,341 Z" fill="#243744" stroke="#0B141B" stroke-width="0.8"/>
+        <line x1="362.5" y1="104" x2="362.5" y2="341" stroke="#4A6372" stroke-width="1"/>
+      </g>
+      <g>
+        <path d="M 474,341 L 474,104 Q 474,90 464,87 L 492,87 Q 484,92 484,104 L 484,341 Z" fill="#243744" stroke="#0B141B" stroke-width="0.8"/>
+        <line x1="482.5" y1="104" x2="482.5" y2="341" stroke="#5A7686" stroke-width="1"/>
+      </g>
+      <g>
+        <path d="M 760,341 L 760,104 Q 760,90 750,87 L 778,87 Q 770,92 770,104 L 770,341 Z" fill="#243744" stroke="#0B141B" stroke-width="0.8"/>
+        <line x1="768.5" y1="104" x2="768.5" y2="341" stroke="#4E6E7A" stroke-width="1"/>
+      </g>
+    </g>
+
+    <!-- wall base kick plate + residents' teal wayfinding line -->
+    <rect x="140" y="326" width="680" height="15" fill="#141F28"/>
+    <rect x="140" y="331" width="680" height="3.5" fill="#3E7F7A"/>
+    <polygon points="0,404 140,326 140,330 0,409" fill="#3E7F7A" opacity="0.8"/>
+    <text x="164" y="323" font-family="Bahnschrift" font-weight="700" font-size="7" letter-spacing="1" fill="#3E7F7A">4 · FWD →</text>
+
+    <!-- handrail on the left wall at 1.0 m (brass worn to pewter) -->
+    <g stroke-linecap="round">
+      <polyline points="0,286 30,277.6" fill="none" stroke="#0B141B" stroke-width="4"/>
+      <polyline points="110,255.4 140,247 300,247" fill="none" stroke="#0B141B" stroke-width="4"/>
+      <polyline points="0,286 30,277.6" fill="none" stroke="#7E7558" stroke-width="2.4"/>
+      <polyline points="110,255.4 140,247 300,247" fill="none" stroke="#7E7558" stroke-width="2.4"/>
+      <polyline points="150,246.2 230,246.2" fill="none" stroke="#9A9A8E" stroke-width="0.8"/>
+      <line x1="170" y1="247" x2="170" y2="254" stroke="#5E5638" stroke-width="2"/>
+      <line x1="270" y1="247" x2="270" y2="254" stroke="#5E5638" stroke-width="2"/>
+    </g>
+
+    <!-- porthole: brass ring, night water with dock lights -->
+    <g id="porthole">
+      <circle cx="335" cy="182" r="29" fill="#0B141B"/>
+      <circle cx="335" cy="182" r="27.5" fill="#8C7A4E"/>
+      <circle cx="335" cy="182" r="22.5" fill="#5E5236"/>
+      <circle cx="335" cy="182" r="20" fill="url(#glass)"/>
+      <g opacity="0.85">
+        <rect x="318" y="186" width="34" height="1" fill="#2E5F66"/>
+        <rect x="321" y="191" width="28" height="1" fill="#2E5F66"/>
+        <rect x="325" y="196" width="20" height="1" fill="#2E5F66"/>
+        <ellipse cx="327" cy="179" rx="2" ry="1.3" fill="#E8B47A"/>
+        <ellipse cx="342" cy="177" rx="1.4" ry="1" fill="#C08A54"/>
+        <rect x="326" y="183" width="2" height="7" fill="#C08A54" opacity="0.55"/>
+        <rect x="341.4" y="180" width="1.4" height="9" fill="#C08A54" opacity="0.45"/>
+      </g>
+      <path d="M 320,170 A 20 20 0 0 1 336,162" stroke="#70CFCF" stroke-width="1" fill="none" opacity="0.35"/>
+      <g fill="#C2B48A">
+        <circle cx="335" cy="156.5" r="1"/><circle cx="335" cy="207.5" r="1"/>
+        <circle cx="309.5" cy="182" r="1"/><circle cx="360.5" cy="182" r="1"/>
+        <circle cx="317" cy="164" r="1"/><circle cx="353" cy="164" r="1"/>
+        <circle cx="317" cy="200" r="1"/><circle cx="353" cy="200" r="1"/>
+      </g>
+    </g>
+
+    <!-- ghost of the old medicine cabinet (cleaner paint) -->
+    <rect x="590" y="138" width="120" height="170" fill="#2A4152" opacity="0.55"/>
+
+    <!-- brass letters + institutional vinyl beneath -->
+    <text x="650" y="99.5" text-anchor="middle" font-family="Bahnschrift" font-weight="700" font-size="11.5" letter-spacing="2.4" fill="#0B141B" opacity="0.8" transform="translate(0.8,0.8)">MEDICAL CENTRE</text>
+    <text x="650" y="99.5" text-anchor="middle" font-family="Bahnschrift" font-weight="700" font-size="11.5" letter-spacing="2.4" fill="#8C7A4E">MEDICAL CENTRE</text>
+    <rect x="592" y="102" width="116" height="7.5" fill="#D3D9DC"/>
+    <text x="650" y="107.6" text-anchor="middle" font-family="Bahnschrift" font-size="5.2" letter-spacing="0.8" fill="#1B2832">CLINIC · DECK 4</text>
+  </g>
+
+  <!-- ============ SIGNAGE / WALL DETAILS ============ -->
+  <g id="signage" inkscape:groupmode="layer" inkscape:label="signage">
+    <!-- wall unit + painted stencil -->
+    <g id="wallunit">
+      <rect x="175" y="157" width="88" height="14" fill="#3E7F7A" opacity="0.6" transform="rotate(-0.8 219 164)"/>
+      <rect x="216" y="158.5" width="44" height="10.5" fill="#3B4A50" opacity="0.9"/>
+      <text x="180" y="167" font-family="Bahnschrift" font-weight="700" font-size="7.4" letter-spacing="0.6" fill="#2F6460">MEDICAL</text>
+      <text x="218.5" y="167" font-family="Bahnschrift" font-weight="700" font-size="7.4" letter-spacing="0.6" fill="#CFC6AC">RECORDER</text>
+      <rect x="190" y="172" width="57" height="57" fill="#2C3A43" stroke="#0B141B" stroke-width="1.5"/>
+      <rect x="192" y="174" width="53" height="2" fill="#4A6372"/>
+      <g fill="#8C7A4E">
+        <polygon points="190,172 199,172 190,181"/><polygon points="247,172 238,172 247,181"/>
+        <polygon points="190,229 199,229 190,220"/><polygon points="247,229 238,229 247,220"/>
+      </g>
+      <circle cx="207" cy="192" r="8" fill="#1A252D" stroke="#8C7A4E" stroke-width="1.2"/>
+      <line x1="207" y1="192" x2="211.5" y2="187" stroke="#CFC6AC" stroke-width="1"/>
+      <rect x="225" y="203" width="15" height="17" fill="#25323A" stroke="#0B141B" stroke-width="0.8"/>
+      <circle cx="232.5" cy="211.5" r="1.3" fill="#0B141B"/>
+    </g>
+
+    <!-- hours whiteboard -->
+    <g id="hoursboard">
+      <rect x="400" y="160" width="66" height="56" fill="#6E7470" stroke="#0B141B" stroke-width="1.2"/>
+      <rect x="403" y="163" width="60" height="50" fill="#B9BEB8"/>
+      <text x="407" y="173" font-family="Segoe Print" font-size="6" fill="#24384F">CLINIC HOURS</text>
+      <text x="407" y="184" font-family="Segoe Print" font-size="4.6" fill="#24384F">technician 3–9 pm</text>
+      <text x="407" y="193" font-family="Segoe Print" font-size="4.6" fill="#24384F">machine: never</text>
+      <text x="420" y="200" font-family="Segoe Print" font-size="4.6" fill="#24384F">closes</text>
+      <path d="M 408,206 q 10,-3 22,0 t 24,1" stroke="#7A3B3B" stroke-width="0.8" fill="none"/>
+    </g>
+    <!-- child's drawing, taped -->
+    <g id="drawing" transform="rotate(-4 425 236)">
+      <rect x="408" y="221" width="36" height="30" fill="#E6DCC3"/>
+      <rect x="405" y="219" width="9" height="4" fill="#CDBF95" opacity="0.9"/>
+      <rect x="438" y="219" width="9" height="4" fill="#CDBF95" opacity="0.9"/>
+      <text x="411" y="228" font-family="Segoe Print" font-size="3.6" fill="#7A3B3B">MUM'S FIXED</text>
+      <rect x="416" y="232" width="8" height="10" fill="none" stroke="#3E7F7A" stroke-width="0.9"/>
+      <circle cx="420" cy="230" r="2.4" fill="none" stroke="#3E7F7A" stroke-width="0.9"/>
+      <line x1="417" y1="242" x2="417" y2="248" stroke="#3E7F7A" stroke-width="0.9"/>
+      <line x1="423" y1="242" x2="423" y2="248" stroke="#3E7F7A" stroke-width="0.9"/>
+      <circle cx="432" cy="236" r="1.8" fill="none" stroke="#C08A54" stroke-width="0.9"/>
+      <line x1="432" y1="238" x2="432" y2="244" stroke="#C08A54" stroke-width="0.9"/>
+      <line x1="424" y1="236" x2="431" y2="239" stroke="#7A3B3B" stroke-width="0.9"/>
+      <line x1="430" y1="248" x2="432" y2="244" stroke="#C08A54" stroke-width="0.9"/>
+      <line x1="434" y1="248" x2="432" y2="244" stroke="#C08A54" stroke-width="0.9"/>
+    </g>
+
+    <!-- STAFF door (left, side wall) -->
+    <g id="staffdoor">
+      <polygon points="26,113 114,121 114,360 26,405" fill="#8C7A4E" stroke="#0B141B" stroke-width="1.5"/>
+      <polygon points="30,116 110,123 110,358 30,402" fill="#1E2C36"/>
+      <line x1="70" y1="120" x2="70" y2="380" stroke="#16222B" stroke-width="1.2"/>
+      <polygon points="44,195 96,199 96,210 44,207" fill="#C9C2AE"/>
+      <text x="70" y="207" text-anchor="middle" font-family="Bahnschrift" font-weight="700" font-size="7" fill="#1B2832" transform="rotate(4 70 204)">STAFF</text>
+    </g>
+
+    <!-- ENTRY door (right, side wall), door plate, hold strip -->
+    <g id="entrydoor">
+      <polygon points="846,121 934,113 934,405 846,360" fill="#8C7A4E" stroke="#0B141B" stroke-width="1.5"/>
+      <polygon points="850,123 930,116 930,402 850,358" fill="#24343F"/>
+      <polygon points="850,123 930,116 930,402 850,358" fill="#0B141B" opacity="0.15"/>
+      <polygon points="862,170 918,166 918,206 862,206" fill="#0F1A22" stroke="#0B141B" stroke-width="0.8"/>
+      <polygon points="862,170 918,166 918,172 862,175" fill="#C08A54" opacity="0.25"/>
+      <polygon points="824,148 843,150 843,160 824,159" fill="#8C7A4E" stroke="#0B141B" stroke-width="0.6"/>
+      <text x="833.5" y="157.5" text-anchor="middle" font-family="Bahnschrift" font-weight="700" font-size="5.2" fill="#1B2832" transform="rotate(4 833 155)">4-F MED</text>
+      <rect x="836" y="168" width="10" height="136" fill="#C08A54" opacity="0.18" filter="url(#soft)"/>
+      <rect x="838" y="170" width="6" height="132" fill="#C08A54" stroke="#0B141B" stroke-width="0.6"/>
+      <text transform="translate(842.6 296) rotate(-90)" font-family="Bahnschrift" font-weight="700" font-size="4.6" letter-spacing="1" fill="#1A1208">CLINIC CLOSED</text>
+    </g>
+  </g>
+
+  <!-- ============ MID: terminal, display, chair, floor tape, bucket ============ -->
+  <g id="mid" inkscape:groupmode="layer" inkscape:label="mid">
+    <!-- wall display (straightest object in the room) -->
+    <g id="display">
+      <rect x="575" y="111" width="150" height="44" fill="#2B3138" stroke="#0B141B" stroke-width="1.5"/>
+      <rect x="580" y="115" width="140" height="36" fill="#0C151C"/>
+      <rect x="580" y="115" width="140" height="36" fill="#70CFCF" opacity="0.05"/>
+      <text x="650" y="139.5" text-anchor="middle" font-family="Bahnschrift" font-weight="700" font-size="21" letter-spacing="1.6" fill="#A95D58">DECEASED</text>
+      <rect x="592" y="144.5" width="116" height="0.8" fill="#70CFCF" opacity="0.45"/>
+    </g>
+
+    <!-- terminal cabinet -->
+    <g id="cabinet">
+      <rect x="600" y="152" width="100" height="189" fill="#3A4650" stroke="#0B141B" stroke-width="1.5"/>
+      <rect x="690" y="152" width="10" height="189" fill="#2A343C"/>
+      <rect x="602" y="154" width="86" height="3" fill="#56636C"/>
+      <rect x="606" y="300" width="84" height="34" fill="#323D46" stroke="#0B141B" stroke-width="0.6"/>
+      <g stroke="#26313A" stroke-width="1">
+        <line x1="612" y1="308" x2="684" y2="308"/><line x1="612" y1="314" x2="684" y2="314"/>
+        <line x1="612" y1="320" x2="684" y2="320"/><line x1="612" y1="326" x2="684" y2="326"/>
+      </g>
+      <!-- small detail screen -->
+      <rect x="613" y="168" width="74" height="50" fill="#252C33" stroke="#0B141B" stroke-width="1"/>
+      <rect x="617" y="172" width="66" height="42" fill="#0F2E35"/>
+      <g fill="#70CFCF">
+        <rect x="621" y="177" width="30" height="2"/>
+        <rect x="621" y="183" width="52" height="1.2" opacity="0.7"/>
+        <rect x="621" y="187" width="46" height="1.2" opacity="0.7"/>
+        <rect x="621" y="191" width="50" height="1.2" opacity="0.7"/>
+        <rect x="621" y="199" width="22" height="1.2" opacity="0.5"/>
+        <rect x="621" y="205" width="40" height="3" opacity="0.85"/>
+      </g>
+      <!-- cradle arm reaching toward the chair -->
+      <path d="M 602,236 L 588,238 L 578,258" fill="none" stroke="#0B141B" stroke-width="5" stroke-linecap="round"/>
+      <path d="M 602,236 L 588,238 L 578,258" fill="none" stroke="#56636C" stroke-width="3" stroke-linecap="round"/>
+      <rect x="571" y="256" width="14" height="7" rx="1.5" fill="#3A4650" stroke="#0B141B" stroke-width="1"/>
+      <!-- lamp cable borrowed from the dock, down to a socket -->
+      
+      <rect x="743" y="316" width="10" height="9" fill="#C9C2AE" stroke="#0B141B" stroke-width="0.6"/>
+    </g>
+
+    <!-- queue tape on the floor: STAND HERE, worn through in the middle -->
+    <g id="queuetape">
+      <polygon points="411,395 467,395 472,424 404,424" fill="none" stroke="#B59A3C" stroke-width="2.6" stroke-dasharray="22 5 9 4 30 6 60" opacity="0.9"/>
+      <text x="438" y="413" text-anchor="middle" font-family="Bahnschrift" font-weight="700" font-size="6.5" letter-spacing="0.8" fill="#B59A3C" opacity="0.75">STAND HERE</text>
+    </g>
+
+    <!-- bucket under the drip -->
+    <g id="bucket">
+      <ellipse cx="320" cy="490" rx="22" ry="6.5" fill="#4E3324" opacity="0.55"/>
+      <path d="M 307,474 L 309.5,493 Q 320,497 330.5,493 L 333,474 Z" fill="#3E7F7A" stroke="#0B141B" stroke-width="1.2"/>
+      <path d="M 327,476 L 329,492" stroke="#2C5E5A" stroke-width="3"/>
+      <ellipse cx="320" cy="474" rx="13" ry="3.6" fill="#1F4542" stroke="#0B141B" stroke-width="1.2"/>
+      <ellipse cx="320" cy="474.5" rx="9" ry="2" fill="#2E5F66" opacity="0.8"/>
+      <ellipse cx="319" cy="420" rx="0.9" ry="1.6" fill="#9FC3D6" opacity="0.7"/>
+    </g>
+
+    <!-- chair cast shadow -->
+    <polygon id="chairshadow" points="512,420 594,420 606,404 528,400" fill="#0A1218" opacity="0.55"/>
+
+    <!-- examination chair: liner chair, dock-canvas repairs, VCS dock socket -->
+    <g id="chair">
+      <!-- base + column -->
+      <ellipse cx="548" cy="415" rx="30" ry="6" fill="#2B353D" stroke="#0B141B" stroke-width="1.5"/>
+      <rect x="541" y="364" width="14" height="50" fill="#4A5560" stroke="#0B141B" stroke-width="1.5"/>
+      <rect x="543" y="366" width="3" height="46" fill="#6E7C86"/>
+      <!-- seat -->
+      <path d="M 512,352 Q 540,346 572,350 L 574,364 Q 540,362 514,366 Z" fill="#5B5A4C" stroke="#0B141B" stroke-width="1.5"/>
+      <path d="M 514,353 Q 540,348 570,351" fill="none" stroke="#8A8366" stroke-width="1.2"/>
+      <!-- leg rest -->
+      <path d="M 512,354 L 500,384 L 511,388 L 522,364 Z" fill="#535244" stroke="#0B141B" stroke-width="1.5"/>
+      <!-- reclined back -->
+      <path d="M 566,352 L 578,294 L 594,297 L 584,358 Z" fill="#5B5A4C" stroke="#0B141B" stroke-width="1.5"/>
+      <path d="M 568,350 L 579,297" stroke="#8A8366" stroke-width="1.2"/>
+      <path d="M 590,300 L 582,355" stroke="#70CFCF" stroke-width="1" opacity="0.55"/>
+      <!-- headrest (second, different canvas) + dock socket -->
+      <path d="M 576,292 L 580,275 L 598,278 L 595,296 Z" fill="#6E6650" stroke="#0B141B" stroke-width="1.5"/>
+      <rect x="585" y="280" width="8" height="8" fill="#7D878E" stroke="#0B141B" stroke-width="0.8"/>
+      <circle cx="589" cy="284" r="1.6" fill="#0B141B"/>
+      <!-- armrest with open restraint -->
+      <path d="M 524,338 L 566,336" stroke="#0B141B" stroke-width="5" stroke-linecap="round"/>
+      <path d="M 524,338 L 566,336" stroke="#4A5560" stroke-width="3" stroke-linecap="round"/>
+      <path d="M 529,339 Q 527,349 533,352 Q 538,350 536,340" fill="none" stroke="#C9C2AE" stroke-width="1.6"/>
+      <path d="M 552,338 Q 556,350 562,349" fill="none" stroke="#C9C2AE" stroke-width="1.6"/>
+      <rect x="560" y="347" width="4" height="3" fill="#8C7A4E"/>
+    </g>
+  </g>
+
+  <!-- ============ DYNAMIC: cable, tag ============ -->
+  <g id="dynamic" inkscape:groupmode="layer" inkscape:label="dynamic">
+    <g id="cable_b">
+      <path d="M 578,262 C 570,320 614,330 600,402" fill="none" stroke="#0B141B" stroke-width="6.5" stroke-linecap="round"/>
+      <path d="M 578,262 C 570,320 614,330 600,402" fill="none" stroke="#2A343B" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M 578,262 C 570,320 614,330 600,402" fill="none" stroke="#56636C" stroke-width="4.5" stroke-dasharray="1.2 3"/>
+      <rect x="594" y="400" width="10" height="13" rx="2" fill="#C08A54" stroke="#0B141B" stroke-width="1.2" transform="rotate(-10 599 406)"/>
+      <rect x="596" y="410" width="6" height="5" fill="#7D878E" stroke="#0B141B" stroke-width="0.8" transform="rotate(-10 599 412)"/>
+    </g>
+    <g id="tag" transform="rotate(9 518 444)">
+      <rect x="504" y="437" width="28" height="14" fill="#E6DCC3" stroke="#0B141B" stroke-width="1"/>
+      <circle cx="508.5" cy="444" r="1.6" fill="#1D2B35"/>
+      <rect x="513" y="440.5" width="15" height="1.4" fill="#5B5A4C"/>
+      <rect x="513" y="444" width="11" height="1.2" fill="#8A8366"/>
+      <rect x="513" y="447" width="13" height="1.2" fill="#8A8366"/>
+    </g>
+  </g>
+
+  <!-- ============ CHARACTER (scale reference): Echo at the entry spawn ============ -->
+  <g id="echo" inkscape:groupmode="layer" inkscape:label="echo">
+    <ellipse cx="878" cy="442" rx="26" ry="6" fill="#0A1218" opacity="0.6"/>
+    <!-- legs -->
+    <path d="M 866,402 L 868,438 L 876,438 L 876,402 Z" fill="#7F909A" stroke="#0B141B" stroke-width="1.5"/>
+    <path d="M 880,402 L 880,438 L 889,438 L 889,402 Z" fill="#9FB0B8" stroke="#0B141B" stroke-width="1.5"/>
+    <path d="M 865,436 L 877,436 L 877,442 L 861,442 Z" fill="#4A6372" stroke="#0B141B" stroke-width="1.2"/>
+    <path d="M 879,436 L 891,436 L 891,442 L 875,442 Z" fill="#4A6372" stroke="#0B141B" stroke-width="1.2"/>
+    <!-- long municipal coat -->
+    <path d="M 858,292 Q 878,284 898,292 L 902,350 L 906,410 Q 880,416 852,410 L 856,350 Z" fill="#1E2B33" stroke="#0B141B" stroke-width="2"/>
+    <path d="M 878,296 L 878,410" stroke="#101B24" stroke-width="1.5"/>
+    <path d="M 896,296 L 900,350 L 904,408" fill="none" stroke="#C08A54" stroke-width="1.1" opacity="0.6"/>
+    <!-- arms -->
+    <path d="M 858,296 L 852,352 L 856,370 L 863,368 L 864,352 Z" fill="#1B272E" stroke="#0B141B" stroke-width="1.5"/>
+    <rect x="852" y="364" width="11" height="3" fill="#70CFCF"/>
+    <path d="M 853,367 L 856,384 L 862,384 L 863,367 Z" fill="#9FB0B8" stroke="#0B141B" stroke-width="1.2"/>
+    <path d="M 898,296 L 902,352 L 900,370 L 893,368 L 892,352 Z" fill="#1B272E" stroke="#0B141B" stroke-width="1.5"/>
+    <path d="M 893,367 L 893,384 L 899,384 L 901,367 Z" fill="#9FB0B8" stroke="#0B141B" stroke-width="1.2"/>
+    <rect x="886" y="294" width="9" height="5" fill="#4A6372" stroke="#0B141B" stroke-width="0.6"/>
+    <!-- neck + head (smooth, faceted temples, jaw seam), facing left -->
+    <rect x="873" y="276" width="10" height="12" fill="#7F909A" stroke="#0B141B" stroke-width="1.2"/>
+    <path d="M 866,256 Q 866,246 878,246 Q 891,246 891,258 L 890,272 Q 884,282 874,281 Q 866,278 865,268 Z" fill="#9FB0B8" stroke="#0B141B" stroke-width="1.8"/>
+    <path d="M 869,271 L 884,277" fill="none" stroke="#4A6372" stroke-width="0.8"/>
+    <path d="M 886,250 Q 890,256 889,266" fill="none" stroke="#4A6372" stroke-width="1.6" opacity="0.7"/>
+    <rect x="866" y="259" width="10" height="2.6" rx="1.3" fill="#101B24" stroke="#70CFCF" stroke-width="0.9"/>
+  </g>
+
+
+  <!-- ============ CHARACTER: Ivo, dock android, standing on the STAND HERE tape ============ -->
+  <!-- Feet at (440,430), facing the chair. Hands behind his back, out of everybody's way. -->
+  <g id="ivo" inkscape:groupmode="layer" inkscape:label="ivo">
+    <ellipse cx="441" cy="430" rx="27" ry="5.5" fill="#0A1218" opacity="0.6"/>
+    <!-- legs: work trousers -->
+    <path d="M 429,366 L 430,421 L 440,421 L 441,366 Z" fill="#26323A" stroke="#0B141B" stroke-width="1.5"/>
+    <path d="M 443,366 L 444,421 L 454,421 L 454,366 Z" fill="#33414A" stroke="#0B141B" stroke-width="1.5"/>
+    <!-- dock boots, toes toward the chair -->
+    <path d="M 427,419 L 441,419 L 442,430 L 425,430 Z" fill="#1B242A" stroke="#0B141B" stroke-width="1.2"/>
+    <path d="M 442,419 L 456,419 L 463,424 L 463,430 L 442,430 Z" fill="#222C33" stroke="#0B141B" stroke-width="1.2"/>
+    <rect x="443" y="427.6" width="19" height="1.4" fill="#C08A54" opacity="0.55"/>
+    <!-- hands clasped behind his back, peeking past the hip -->
+    <ellipse cx="416" cy="358" rx="6" ry="5" fill="#9FB0B8" stroke="#0B141B" stroke-width="1.2"/>
+    <!-- work shirt -->
+    <path d="M 420,289 Q 441,279 463,289 L 467,330 L 463,371 Q 441,377 418,371 L 416,330 Z" fill="#4A5560" stroke="#0B141B" stroke-width="2"/>
+    <!-- work vest: muted dock amber with worn reflective bands -->
+    <path d="M 423,292 Q 441,285 461,292 L 465,330 L 462,369 Q 441,374 420,369 L 418,330 Z" fill="#7A5E36" stroke="#0B141B" stroke-width="1.4"/>
+    <rect x="419" y="334" width="46" height="4.5" fill="#C9C2AE" opacity="0.7"/>
+    <rect x="419" y="351" width="46" height="4.5" fill="#C9C2AE" opacity="0.6"/>
+    <path d="M 447,289 L 449,372" stroke="#3E2E1A" stroke-width="1.2"/>
+    <rect x="452" y="303" width="9" height="6" fill="#C9C2AE" stroke="#0B141B" stroke-width="0.6"/>
+    <rect x="453.5" y="305.4" width="6" height="1" fill="#5B5A4C"/>
+    <!-- near arm swings back to meet the other hand -->
+    <path d="M 445,291 Q 457,293 457,302 L 441,346 L 430,342 Z" fill="#4A5560" stroke="#0B141B" stroke-width="1.5"/>
+    <rect x="428" y="338" width="13" height="4" fill="#3A444C" stroke="#0B141B" stroke-width="0.8" transform="rotate(22 434 340)"/>
+    <path d="M 430,342 L 441,346 L 423,359 L 416,351 Z" fill="#7F909A" stroke="#0B141B" stroke-width="1.3"/>
+    <!-- the left shoulder that clicks: a replacement joint, newer than the rest of him -->
+    <circle cx="450" cy="297" r="4.2" fill="#7D878E" stroke="#0B141B" stroke-width="1"/>
+    <circle cx="450" cy="297" r="1.5" fill="#C08A54"/>
+    <!-- lamp light catching his front edge -->
+    <path d="M 463,292 L 467,330 L 463,369" fill="none" stroke="#C08A54" stroke-width="1.1" opacity="0.6"/>
+    <!-- neck + head (square jaw, warm eye), facing right -->
+    <rect x="436" y="271" width="11" height="14" fill="#7F909A" stroke="#0B141B" stroke-width="1.2"/>
+    <path d="M 428,250 Q 428,240 441,240 Q 455,240 455,252 L 455,266 L 449,275 L 432,275 Q 429,271 429,264 Z" fill="#8D9CA4" stroke="#0B141B" stroke-width="1.8"/>
+    <path d="M 440,272 L 454,265" fill="none" stroke="#4A6372" stroke-width="0.8"/>
+    <path d="M 432,248 Q 429,254 430,263" fill="none" stroke="#4A6372" stroke-width="1.6" opacity="0.7"/>
+    <rect x="446" y="255" width="9" height="2.6" rx="1.3" fill="#101B24" stroke="#E8B47A" stroke-width="0.9"/>
+    <!-- knit dock cap -->
+    <path d="M 427,249 Q 427,232 441,231 Q 456,231 456,249 Z" fill="#2F4A47" stroke="#0B141B" stroke-width="1.5"/>
+    <rect x="426" y="243" width="31" height="6.5" rx="2" fill="#355552" stroke="#0B141B" stroke-width="1"/>
+    <g stroke="#294240" stroke-width="0.8"><line x1="433" y1="235" x2="433" y2="243"/><line x1="441" y1="232" x2="441" y2="243"/><line x1="449" y1="235" x2="449" y2="243"/></g>
+  </g>
+
+  <!-- ============ NEAR: trolley (foreground occluder) ============ -->
+  <g id="near" inkscape:groupmode="layer" inkscape:label="near">
+    <ellipse cx="132" cy="528" rx="98" ry="9" fill="#0A1218" opacity="0.6"/>
+    <g id="trolley">
+      <!-- legs -->
+      <g stroke="#0B141B" stroke-width="1.2" fill="#6B7B84">
+        <rect x="52" y="402" width="6" height="116"/>
+        <rect x="204" y="402" width="6" height="116"/>
+        <rect x="70" y="396" width="4" height="96" fill="#4A5860"/>
+        <rect x="190" y="396" width="4" height="96" fill="#4A5860"/>
+      </g>
+      <!-- lower shelf -->
+      <polygon points="50,478 212,478 206,488 56,488" fill="#55646D" stroke="#0B141B" stroke-width="1.2"/>
+      <!-- top tray -->
+      <polygon points="66,388 196,388 214,404 46,404" fill="#8A9AA2" stroke="#0B141B" stroke-width="1.5"/>
+      <rect x="46" y="404" width="168" height="7" fill="#5F6F78" stroke="#0B141B" stroke-width="1.2"/>
+      <!-- module trays + masking tape roll -->
+      <rect x="78" y="378" width="38" height="14" fill="#2C3A43" stroke="#0B141B" stroke-width="1"/>
+      <rect x="82" y="381" width="8" height="8" fill="#3E7F7A"/>
+      <rect x="94" y="381" width="8" height="8" fill="#4A6372"/>
+      <rect x="106" y="381" width="6" height="8" fill="#4A6372"/>
+      <rect x="124" y="383" width="34" height="9" fill="#323F48" stroke="#0B141B" stroke-width="1"/>
+      <ellipse cx="176" cy="390" rx="10" ry="4" fill="#CDBF95" stroke="#0B141B" stroke-width="1"/>
+      <ellipse cx="176" cy="389.5" rx="4.5" ry="1.8" fill="#2C3A43"/>
+      <!-- wheels: one replaced with a heavier dock caster -->
+      <circle cx="55" cy="521" r="6" fill="#1B242A" stroke="#0B141B" stroke-width="1.2"/>
+      <circle cx="207" cy="519" r="8.5" fill="#101418" stroke="#0B141B" stroke-width="1.2"/>
+      <circle cx="207" cy="519" r="3" fill="#C08A54"/>
+      <!-- lamp rim on the tray edge -->
+      <line x1="150" y1="388.6" x2="196" y2="388.6" stroke="#E8B47A" stroke-width="0.9" opacity="0.6"/>
+    </g>
+  </g>
+
+  <!-- ============ CEILING PIPES + LAMP (drawn over walls, under light) ============ -->
+  <g id="ceiling" inkscape:groupmode="layer" inkscape:label="ceiling">
+    <!-- three pipes converging toward the vanishing point (480,152); front ends wider -->
+    <!-- left pipe, lagged in silver tape, drips into the bucket -->
+    <polygon points="236,0 262,0 388,87 374,87" fill="#33454F" stroke="#0B141B" stroke-width="1.2"/>
+    <polyline points="250,0 381,87" fill="none" stroke="#4A6372" stroke-width="1.6"/>
+    <g fill="#7F8C92" stroke="#0B141B" stroke-width="0.6">
+      <polygon points="262,10 288,10 300,27 274,27"/>
+      <polygon points="300,36 322,36 332,52 310,52"/>
+      <polygon points="338,62 354,62 361,73 345,73"/>
+    </g>
+    <!-- middle pipe carries the clip lamp -->
+    <polygon points="636,0 662,0 560,87 546,87" fill="#33454F" stroke="#0B141B" stroke-width="1.2"/>
+    <polyline points="649,0 553,87" fill="none" stroke="#4A6372" stroke-width="1.6"/>
+    <!-- right pipe -->
+    <polygon points="842,0 864,0 664,87 652,87" fill="#2C3B45" stroke="#0B141B" stroke-width="1.2"/>
+    <polyline points="853,0 658,87" fill="none" stroke="#3A5160" stroke-width="1.4"/>
+    <!-- the drip -->
+    <ellipse cx="322" cy="56" rx="1" ry="1.8" fill="#9FC3D6" opacity="0.8"/>
+    <!-- clip work lamp on the middle pipe, aimed down at the chair -->
+    <rect x="583" y="52" width="6" height="7" fill="#3A4650" stroke="#0B141B" stroke-width="0.8"/>
+    <polygon points="575,58 597,58 602,74 570,74" fill="#4A4436" stroke="#0B141B" stroke-width="1.2"/>
+    <line x1="577" y1="60" x2="573" y2="72" stroke="#6B6350" stroke-width="1.2"/>
+    <ellipse cx="586" cy="74" rx="16" ry="3" fill="#E8B47A"/>
+    <!-- lamp cable along the pipe, then down the wall -->
+    <path d="M 596,62 C 660,58 744,66 748,96 L 748,318" fill="none" stroke="#141C22" stroke-width="1.4"/>
+  </g>
+
+  <!-- ============ LIGHT ============ -->
+  <g id="lamp" inkscape:groupmode="layer" inkscape:label="lamp">
+    <polygon points="571,75 601,75 670,432 450,432" fill="url(#amberCone)"/>
+    <ellipse cx="552" cy="418" rx="165" ry="44" fill="url(#amberPool)"/>
+    <ellipse cx="570" cy="250" rx="140" ry="160" fill="url(#amberWash)"/>
+  </g>
+  <g id="shade" inkscape:groupmode="layer" inkscape:label="shade">
+    <ellipse cx="650" cy="192" rx="80" ry="70" fill="url(#cyanGlow)"/>
+    <ellipse cx="650" cy="133" rx="100" ry="38" fill="url(#cyanGlow)" opacity="0.6"/>
+    <ellipse cx="335" cy="182" rx="40" ry="40" fill="url(#cyanGlow)" opacity="0.35"/>
+    <rect x="0" y="0" width="960" height="540" fill="url(#leftDark)"/>
+    <rect x="0" y="0" width="960" height="540" fill="url(#vignette)"/>
+    <!-- (the style test's film grain is left out: as a game picture it cost 4.5 MB for a 5% effect) -->
+  </g>
+</svg>
