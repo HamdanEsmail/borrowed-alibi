@@ -1,22 +1,21 @@
-// Episode 00 borrowed perspective: Ivo's recorded frame laid over the room.
+// Episode 00 borrowed memory: Ivo's recorded frame laid over the room.
 // Story content, authored separately from the code. Same node shape as
 // ep00Ivo.js, so the same Conversation engine runs it.
 //
 // Until the frame art exists, THEN and NOW are written out per callout.
 
 const echo = (text) => ({ who: 'ECHO', text });
-const act = (text) => ({ text, note: true });
 const then = (text) => ({ who: 'THEN', text });
 const now = (text) => ({ who: 'NOW', text });
-const hint = (text) => ({ who: 'HELP', text });
+const hint = (text) => ({ who: 'HINT', text });
 
 const HINTS = [
-  'Name what changed between then and now.',
-  'Compare the cable and the screen as separate observations.',
-  'A changed state is visible. What caused it is not.',
+  'Look at what changed between then and now.',
+  'His memory shows the moment before. Does it show the moment after?',
+  'A hand on a cable isn’t proof of what the cable did.',
 ];
 
-// The callouts, plus the reasoning question once all three are confirmed.
+// The callouts, plus the reasoning question once all three are compared.
 function frameMenu(s) {
   const f = s.flags;
   const tick = (flag) => (f[flag] ? ' ✓' : '');
@@ -27,66 +26,66 @@ function frameMenu(s) {
   ];
   const allCompared = f['obs.cmp.cable'] && f['obs.cmp.chair'] && f['obs.cmp.screen'];
   if (allCompared && !f['ep00.comparisonDone']) {
-    choices.push({ label: 'What can this comparison establish?', next: 'reason' });
+    choices.push({ label: 'So what does his memory prove?', next: 'reason' });
   }
-  choices.push({ label: 'Close the frame', next: null });
+  choices.push({ label: 'Step out of the memory', next: null });
   return choices;
 }
 
-// The three claims. Only one stays inside what the pictures show.
-// Help is offered one level at a time and never answers for the player.
+// The three answers. Only one stays inside what the memory shows.
+// Hints come one at a time and never answer for the player.
 function claims(s) {
   const f = s.flags;
   const choices = [
-    { label: 'The disconnection caused the fatal event.', next: 'claimCause' },
-    { label: 'The cable is seated in the recording and hangs loose now. These pictures do not show what caused the change.', next: 'claimStates' },
-    { label: 'The occupant was unharmed.', next: 'claimHarm' },
+    { label: 'Ivo killed him. His hand is right there on the cable.', next: 'claimCause' },
+    { label: 'Dr. Vale was alive and asking for help when Ivo took hold of the cable. Nothing here shows what happened after.', next: 'claimStates' },
+    { label: 'Dr. Vale was fine. The chair is empty now.', next: 'claimHarm' },
   ];
   if (!f['ep00.cmp.help3']) {
     const level = f['ep00.cmp.help2'] ? 'help3' : f['ep00.cmp.help1'] ? 'help2' : 'help1';
-    choices.push({ label: level === 'help1' ? 'Help' : 'More help', next: level });
+    choices.push({ label: level === 'help1' ? 'Hint' : 'Another hint', next: level });
   }
-  choices.push({ label: 'Close the frame', next: null });
+  choices.push({ label: 'Step out of the memory', next: null });
   return choices;
 }
 
 export const FRAME = {
   frame: {
     lines: [
-      act('Ivo’s frame, laid over the room.'),
-      { who: 'STAMP', text: 'IVO · 21:14:07 · DEVICE CLOCK' },
-      { who: 'FRAME', text: 'Recorded by Ivo, 21:14:07 by Ivo’s device clock. Ivo’s left hand grips the dock cable at the connector; the cable is seated in the cradle. The frame does not show the connector leaving.' },
-      { who: 'FRAME', text: 'The chair is occupied by a figure with Dr. Sen Vale’s face; both wrist restraints are open; a transit tag is on the figure’s left wrist. The figure’s head is turned toward Ivo and its mouth is open. The terminal reads SESSION ACTIVE, 41%, HOLD. No other person is visible. The frame ends here.' },
-      { who: 'LIMITS', text: 'This frame ends at 21:14:07 by Ivo’s device clock. It shows his hand on a cable that is still seated. It does not show the connector leaving the cradle. It shows nothing after this frame. Ivo’s clock is his; it has not been checked against the terminal clock.' },
+      echo('I borrow his eyes. The room fills back in the way he saw it: 9:14 PM, the moment he took hold.'),
+      { who: 'MEMORY', text: 'Ivo’s left hand grips the cable at the plug. The plug is still in the machine.' },
+      { who: 'MEMORY', text: 'Dr. Vale is in the chair, wrist straps open, a freight tag on his left wrist. His head is turned toward Ivo. His mouth is open, mid-word.' },
+      { who: 'MEMORY', text: 'The screen reads: WORKING · 41% · HOLD. Nobody else is in the room.' },
+      echo('One frame, and it ends there. Whatever he was saying, the sentence never finishes.'),
     ],
     choices: frameMenu,
   },
 
-  // Callouts: each adds one observation the first time it is confirmed
+  // Callouts: each adds one observation the first time it is compared
   cable: {
     lines: [
-      then('Cable seated in the cradle. Ivo’s hand on the connector.'),
-      now('Cable hanging, connector down.'),
-      echo('At 21:14:07 by Ivo’s device clock the cable is seated and his hand is on the connector. Now the cable hangs, connector down. The frame does not show the connector leaving the cradle.'),
+      then('Plugged in. Ivo’s hand on it.'),
+      now('Hanging loose, plug down.'),
+      echo('In his memory it’s still in. Now it hangs. The frame never shows it coming out.'),
     ],
     adds: ['obs.cmp.cable'],
     choices: frameMenu,
   },
   chair: {
     lines: (s) => [
-      then('Chair occupied. Tag on the left wrist.'),
-      now('Chair empty. Tag on the floor.'),
-      echo('At 21:14:07 the chair is occupied and the tag is on the left wrist. Now the chair is empty and the tag is on the floor. These are two positions. The frames do not show the tag being removed.'),
-      ...(s.flags['tst.ivo_walked_out'] ? [echo('Ivo says he took the tag off and dropped it.')] : []),
+      then('Dr. Vale in the chair. The tag on his wrist.'),
+      now('An empty chair. The tag on the floor.'),
+      echo('Then he was here. Now he isn’t. Nobody filmed the part in between.'),
+      ...(s.flags['tst.ivo_walked_out'] ? [echo('Ivo says he stood up and walked out.')] : []),
     ],
     adds: ['obs.cmp.chair'],
     choices: frameMenu,
   },
   screen: {
     lines: [
-      then('SESSION ACTIVE · 41% · HOLD'),
-      now('FATAL EVENT · recorded 21:20'),
-      echo('The THEN screen reads SESSION ACTIVE, 41%. The NOW display reads FATAL EVENT, recorded 21:20. The frame does not show the change.'),
+      then('WORKING · 41% · HOLD'),
+      now('DECEASED · 9:20 PM'),
+      echo('At 9:14 the machine was still working on him. By 9:20 it was calling him dead. The minutes in between are blank.'),
     ],
     adds: ['obs.cmp.screen'],
     choices: frameMenu,
@@ -94,24 +93,24 @@ export const FRAME = {
 
   // Player reasoning
   reason: {
-    lines: [echo('What can this comparison establish?')],
+    lines: [echo('So what does Ivo’s memory actually prove?')],
     choices: claims,
   },
   claimCause: {
-    lines: [echo('That puts a cause into the gap between the pictures. The comparison does not show that gap.')],
+    lines: [echo('His hand is on it, and it’s still plugged in. That’s the moment before, not the cause. The screen already filled this blank with a guess. I’m not doing it twice.')],
     choices: claims,
   },
   claimHarm: {
-    lines: [echo('The empty chair does not show the occupant’s condition. Keep the claim inside what these pictures show.')],
+    lines: [echo('An empty chair says he left. It doesn’t say he was fine. Stick to what’s in the picture.')],
     choices: claims,
   },
   claimStates: {
-    lines: [echo('The difference is observed. The cause is still a question.')],
+    lines: [echo('That’s all the picture can carry. The cable came out. What that did is still an open question.')],
     adds: ['inf.ep00_no_causation', 'ep00.comparisonDone'],
     choices: frameMenu,
   },
 
-  // Optional help, one level at a time
+  // Optional hints, one level at a time
   help1: {
     lines: HINTS.slice(0, 1).map(hint),
     adds: ['ep00.cmp.help1'],

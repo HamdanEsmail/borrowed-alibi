@@ -3,75 +3,78 @@
 //
 // Each entry has a title, the text shown the first time (`first`), and a
 // shorter line for later inspections (`repeat`). `who` labels whose words
-// a line is: ECHO is Echo's own observation; other labels are printed text.
+// a line is: ECHO is Echo's own voice; other labels are printed text.
 // `after` adds one more line once Echo has heard the matching testimony.
 
 export const INSPECT = {
   'obj.terminal': {
     title: 'Clinic terminal',
     first: [
-      { who: 'DISPLAY', text: 'INCIDENT 2041-M · FATAL EVENT · Registered identity: VALE, SEN (7741-V) · Recorded 21:20 · Cause: terminal disconnection — INTERPRETED.' },
-      { who: 'ECHO', text: 'The word “interpreted” is set smaller than the verdict. I open the detail view on the cabinet.' },
-      { who: 'DETAIL', text: 'Interpretation: automated, standard incident template T-7. Observed time of identity loss: none. Last intervention logged: data cable disconnected, 21:14, terminal clock.' },
-      { who: 'ECHO', text: 'It has a cause and no moment. I record both.' },
+      { who: 'SCREEN', text: 'DR. SEN VALE (ID 7741-V) · DECEASED · 9:20 PM · CAUSE: CABLE PULLED' },
+      { who: 'ECHO', text: 'One word on a screen, and everyone in this room already believes it.' },
+      { who: 'ECHO', text: 'Underneath, in smaller letters, the screen tells on itself.' },
+      { who: 'SCREEN', text: 'Cable pulled: 9:14 PM. Moment of death: not observed. Cause: system’s best guess.' },
+      { who: 'ECHO', text: 'Nobody saw him die. The machine saw a cable come out, saw a dead man six minutes later, and drew a line between the two.' },
     ],
     repeat: [
-      { who: 'ECHO', text: 'Still FATAL EVENT. Still no observed time of loss. The screen is certain in a way the detail view is not.' },
+      { who: 'ECHO', text: 'Big letters: dead. Small letters: guessing. Machines always hide the doubt in the small print.' },
     ],
   },
 
   'obj.cable': {
     title: 'Dock cable',
     first: [
-      { who: 'ECHO', text: 'The dock cable hangs from the cradle, connector down. The latch is intact. The sleeve is scuffed where a hand gripped it. Pulled, not cut, not failed. Someone did this on purpose. That is all it tells me.' },
+      { who: 'ECHO', text: 'The thick cable hangs off the machine, plug end down. Nothing’s broken. The grip is scuffed where a hand held on hard. Somebody pulled this out on purpose. That’s all a cable can tell you.' },
     ],
     repeat: [
-      { who: 'ECHO', text: 'Pulled by hand. Nothing about what happened afterward is in the cable.' },
+      { who: 'ECHO', text: 'Pulled out by hand. The cable knows how. It doesn’t know what happened next.' },
     ],
-    after: { flag: 'tst.ivo_pulled', text: 'Scuffed where he said he gripped it.' },
+    after: { flag: 'tst.ivo_pulled', text: 'Scuffed right where Ivo said he grabbed it.' },
   },
 
   'obj.tag': {
     title: 'Freight tag',
     first: [
-      { who: 'ECHO', text: 'A transit tag — the paper kind the lift prints for freight.' },
-      { who: 'TAG', text: 'SERVICE LIFT 3 · TRANSIT · 21:06 · REG 7741-V · DECK 6 → DECK 2 (GANGWAY)' },
-      { who: 'ECHO', text: 'The strap is torn, not unbuckled. Printed by the lift’s clock, not the clinic’s. It says the registered identity was moving at 21:06, bound for the gangway. It does not say what happened after 21:06, or that anyone finished the journey in this room.' },
+      { who: 'ECHO', text: 'A paper tag with a torn strap. The cargo lift prints these for crates.' },
+      { who: 'TAG', text: 'LIFT 3 · FREIGHT · 9:06 PM · ID 7741-V · DECK 6 → GANGWAY' },
+      { who: 'ECHO', text: 'Same ID number as the dead doctor on the screen. Since when does a doctor ship out as freight?' },
+      { who: 'ECHO', text: 'It says when it was printed and where it was going. It doesn’t say who wore it, or how it ended up on this floor.' },
     ],
     repeat: [
-      { who: 'ECHO', text: 'Freight tag. Lift clock. 21:06. Bound for the gangway. Found beside this chair.' },
+      { who: 'ECHO', text: 'Freight tag. 9:06. The doctor’s ID number. Bound for the gangway. Found by this chair.' },
     ],
-    after: { flag: 'tst.ivo_walked_out', text: 'He said he took it off and dropped it. It fell here.' },
+    after: { flag: 'tst.ivo_walked_out', text: 'Ivo says the man tore it off on his way out. It landed right here.' },
   },
 
   'obj.chair': {
     title: 'Examination chair',
     first: [
-      { who: 'ECHO', text: 'The old examination chair, re-padded in dock canvas. The head cradle is raised. Both wrist restraints are open, not torn. Whoever was in it was released, or released themselves.' },
+      { who: 'ECHO', text: 'The patient chair. Old cruise-ship leather, patched with dock canvas. The headrest is up. Both wrist straps are open, not broken. Whoever sat here was let go, or let themselves go.' },
     ],
     repeat: [
-      { who: 'ECHO', text: 'Open restraints. Raised cradle. An empty chair tells you how someone left, not why.' },
+      { who: 'ECHO', text: 'Open straps. An empty chair tells you somebody left. It doesn’t tell you how.' },
     ],
   },
 
   'obj.wallunit': {
     title: 'Wall unit',
     first: [
-      { who: 'ECHO', text: 'A sealed passenger-era wall unit. MEDICAL RECORDER is stencilled under the residents’ teal paint — someone painted over it, then scraped the word RECORDER clean again. It is not connected to the terminal. It wants a ship key I do not have.' },
+      { who: 'ECHO', text: 'A machine sealed into the wall, left over from the cruise-ship days. Somebody painted over the words MEDICAL RECORDER, then scraped RECORDER clean again.' },
+      { who: 'ECHO', text: 'It takes a ship’s key. I don’t have one. Somebody wanted that word seen.' },
     ],
     repeat: [
-      { who: 'ECHO', text: 'Sealed. Ship key. Not mine to open tonight.' },
+      { who: 'ECHO', text: 'Sealed tight. Ship’s key. Not tonight.' },
     ],
   },
 
   'obj.board': {
     title: 'Hours board',
     first: [
-      { who: 'BOARD', text: 'CLINIC HOURS · TECH 15:00–21:00 · THE MACHINE IS ALWAYS ON.' },
-      { who: 'ECHO', text: 'Under it, taped: a child’s drawing of a figure with a square chest holding hands with a smaller figure. Written across the top in a careful hand: MUM’S FIXED.' },
+      { who: 'BOARD', text: 'CLINIC HOURS · TECHNICIAN 3 PM–9 PM · THE MACHINE NEVER CLOSES' },
+      { who: 'ECHO', text: 'Taped underneath: a kid’s drawing. A figure with a square chest, holding hands with a smaller one. Across the top, in careful letters: MUM’S FIXED.' },
     ],
     repeat: [
-      { who: 'ECHO', text: 'Mum’s fixed. Somebody’s night went better than this one.' },
+      { who: 'ECHO', text: 'Mum’s fixed. Somebody’s night in here went better than this one.' },
     ],
   },
 };

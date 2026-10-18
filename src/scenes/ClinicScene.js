@@ -4,6 +4,7 @@ import { INSPECT } from '../data/ep00Text.js';
 import { IVO } from '../data/ep00Ivo.js';
 import { FRAME } from '../data/ep00Frame.js';
 import { REPORT } from '../data/ep00Report.js';
+import { INTRO } from '../data/ep00Intro.js';
 import { Conversation } from '../dialogue/Conversation.js';
 import { state } from '../state/gameState.js';
 import { InspectPanel } from '../ui/InspectPanel.js';
@@ -25,10 +26,12 @@ export class ClinicScene extends Phaser.Scene {
         this.createControls();
         this.panel = new InspectPanel();
         this.ivoTalk = new Conversation('Ivo', IVO, this.panel);
-        this.frameTalk = new Conversation('Ivo\'s frame', FRAME, this.panel);
-        this.reportTalk = new Conversation('Provisional Report', REPORT, this.panel);
-        this.talks = [this.ivoTalk, this.frameTalk, this.reportTalk];
+        this.frameTalk = new Conversation('Ivo\'s memory', FRAME, this.panel);
+        this.reportTalk = new Conversation('Report', REPORT, this.panel);
+        this.introTalk = new Conversation('Borrowed Alibi', INTRO, this.panel);
+        this.talks = [this.introTalk, this.ivoTalk, this.frameTalk, this.reportTalk];
         this.actions = [];
+        this.introTalk.start('start');
     }
 
     drawRoom() {
@@ -195,10 +198,10 @@ export class ClinicScene extends Phaser.Scene {
     actionsFor(item) {
         const actions = [];
         if (item.frame && state.flags['ep00.clipHeld']) {
-            actions.push({ label: 'Borrow Ivo\'s perspective', talk: this.frameTalk, node: 'frame'});
+            actions.push({ label: 'Borrow Ivo\'s memory', talk: this.frameTalk, node: 'frame'});
         }
         if (item.report && !state.flags['inf.ep00_report']) {
-            actions.push({ label: 'File provisional report', talk: this.reportTalk, node: 'start'});
+            actions.push({ label: 'Write the report', talk: this.reportTalk, node: 'start'});
         }
         return actions;
     }
